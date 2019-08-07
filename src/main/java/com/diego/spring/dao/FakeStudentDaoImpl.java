@@ -1,15 +1,19 @@
 package com.diego.spring.dao;
 
 import com.diego.spring.model.Student;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository("fakeDao")
 public class FakeStudentDaoImpl implements StudentDao {
 
     private final Map<UUID, Student> database;
 
     public FakeStudentDaoImpl() {
         database = new HashMap<>();
+        UUID studentUid = UUID.randomUUID();
+        database.put(studentUid, new Student(studentUid, 14, "Diego", "Felipe", "Computer Science"));
     }
 
     @Override
