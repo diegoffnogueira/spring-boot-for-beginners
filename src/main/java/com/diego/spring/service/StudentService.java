@@ -13,10 +13,12 @@ import java.util.UUID;
 public class StudentService {
 
     private final StudentDao studentDao;
+    private final StudentDao studentMongoDbDao;
 
     @Autowired
-    public StudentService(@Qualifier("fakeDao") StudentDao studentDao) {
+    public StudentService(@Qualifier("fakeDao") StudentDao studentDao, @Qualifier("mongoDBDao") StudentDao studentMongoDbDao) {
         this.studentDao = studentDao;
+        this.studentMongoDbDao = studentMongoDbDao;
     }
 
     public int persistNewStudent(UUID studentId, Student student){
@@ -31,6 +33,10 @@ public class StudentService {
 
     public List<Student> getAllStudents(){
         return studentDao.selectAllStudents();
+    }
+
+    public List<Student> getAllStudentsMongoDb(){
+        return studentMongoDbDao.selectAllStudents();
     }
 
     public int updateStudentById(UUID studentId, Student studentUpdate){

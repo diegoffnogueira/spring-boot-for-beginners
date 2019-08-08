@@ -25,6 +25,11 @@ public class StudentResource {
         return studentService.getAllStudents();
     }
 
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, path = "mongoDB")
+    public List<Student> getAllStudentsMongoDb() {
+        return studentService.getAllStudentsMongoDb();
+    }
+
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertNewStudent(@RequestBody Student student) {
         studentService.persistNewStudent(UUID.randomUUID(), student);
